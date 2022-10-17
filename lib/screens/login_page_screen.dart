@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trivial_rush/screens/onboarding_screen.dart';
 
 import 'info_screen.dart';
 
@@ -16,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-// *************** Logo Image **************************************************
+// Logo Image
 
         child: SizedBox(
           width: MediaQuery.of(context).size.height,
@@ -34,12 +35,12 @@ class _LoginPageState extends State<LoginPage> {
                       height: 157,
                     ),
 
-// ************* Input Form ****************************************************
+// Input Form
 
                     Form(
                       child: Column(
                         children: [
-// ************* Email TextField ***********************************************
+// Email TextField
 
                           const TextField(
                             decoration: InputDecoration(
@@ -53,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
 
-// ************* Password TextField ********************************************
+// Password TextField
 
                           const TextField(
                             obscureText: true,
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
 
-// ************* Remember Password CheckBox ************************************
+// Remember Password CheckBox
 
                           SizedBox(
                             child: CheckboxListTile(
@@ -95,16 +96,16 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-// *************** Login Button ************************************************
+// Login Button
 
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const OnBoarding(),
-                          ),
-                        );
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const OnBoardingScreen(),
+                            ),
+                            (route) => false);
                       },
                       child: Container(
                         width: 154,

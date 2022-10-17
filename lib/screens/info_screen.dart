@@ -40,7 +40,7 @@ class OnBoarding extends StatelessWidget {
 
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            const EdgeInsets.symmetric(horizontal: 16.0),
                             child: onBoardPages.mainText,
                           ),
 

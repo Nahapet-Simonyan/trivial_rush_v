@@ -13,7 +13,7 @@ class InfoPageItem {
       required this.color});
 }
 
-// *********** Info Page 1 *****************************************************
+// Info Page 1
 
 class InfoPageItems {
   static List<InfoPageItem> loadOnBoardItem() {
@@ -42,7 +42,7 @@ class InfoPageItems {
         image: Image.asset('assets/images/info_page_1.png'),
       ),
 
-// *********** Info Page 2 *****************************************************
+// Info Page 2
 
       InfoPageItem(
         title: const Text(
@@ -67,7 +67,7 @@ class InfoPageItems {
         ),
       ),
 
-// *********** Info Page 3 *****************************************************
+// Info Page 3
 
       InfoPageItem(
         title: const Text(
@@ -95,7 +95,7 @@ class InfoPageItems {
         ),
       ),
 
-// *********** Info Page 4 *****************************************************
+// Info Page 4
 
       InfoPageItem(
         title: const Text(
