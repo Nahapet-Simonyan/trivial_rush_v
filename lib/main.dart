@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/login_page_screen.dart';
+import 'package:trivial_rush/screens/login_page_screen/login_page_screen.dart';
 
 void main() => runApp(const MyApp());
 

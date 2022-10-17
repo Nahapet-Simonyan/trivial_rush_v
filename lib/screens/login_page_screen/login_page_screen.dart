@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/onboarding_screen.dart';
+import 'package:trivial_rush/screens/info/onboarding_screen.dart';
 
-import 'info_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

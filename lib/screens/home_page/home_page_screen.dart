@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/leaderboard_screen.dart';
-import 'package:trivial_rush/screens/play_screen.dart';
-import 'package:trivial_rush/screens/purchases_screen.dart';
+import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
+import 'package:trivial_rush/screens/play/play_screen.dart';
+import 'package:trivial_rush/screens/purchases/purchases_screen.dart';
 import 'package:trivial_rush/widgets/home_page_dropdown.dart';
 
 class HomePage extends StatelessWidget {
