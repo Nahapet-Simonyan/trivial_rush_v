@@ -29,14 +29,14 @@ class OnBoarding extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-// ***************** Title *****************************************************
+// Title
 
                           Padding(
                             padding: const EdgeInsets.only(top: 20, bottom: 10),
                             child: onBoardPages.title,
                           ),
 
-// ***************** Main Text *************************************************
+// Main Text
 
                           Padding(
                             padding:
@@ -44,7 +44,7 @@ class OnBoarding extends StatelessWidget {
                             child: onBoardPages.mainText,
                           ),
 
-// ***************** Image *****************************************************
+// Image
 
                           onBoardPages.image,
                         ],
@@ -52,7 +52,7 @@ class OnBoarding extends StatelessWidget {
                     ),
                   ),
 
-// ***************** Pages Indicator *******************************************
+// Pages Indicator
 
                   if (index != 3)
                     Padding(
@@ -85,7 +85,7 @@ class OnBoarding extends StatelessWidget {
                       ),
                     )
 
-// ***************** Go To Home Page Button ************************************
+// Go To Home Page Button
 
                   else
                     GestureDetector(
