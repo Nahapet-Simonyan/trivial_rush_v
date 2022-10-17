@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:trivial_rush/widgets/info_page_items.dart';
+import 'package:trivial_rush/screens/info/info_page_items.dart';
 
 import '../home_page/home_page_screen.dart';
 

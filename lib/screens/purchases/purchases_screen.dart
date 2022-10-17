@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/models/purchases.dart';
-import 'package:trivial_rush/widgets/purchases_item.dart';
+import 'package:trivial_rush/screens/purchases/purchases_item.dart';
 import '../../services/purchases_service.dart';
 
 class PurchasesScreen extends StatefulWidget {

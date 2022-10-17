@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/models/leaderboard.dart';
-import 'package:trivial_rush/widgets/leaderboard_item.dart';
+import 'package:trivial_rush/screens/leaderboard/leaderboard_item.dart';
 import '../../services/leaderboard_service.dart';
 
 class LeaderboardScreen extends StatefulWidget {

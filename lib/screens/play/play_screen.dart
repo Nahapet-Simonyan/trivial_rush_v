@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/countdown_items.dart';
+import 'countdown_items.dart';
 
 class GameStartCountdown extends StatefulWidget {
   const GameStartCountdown({Key? key}) : super(key: key);
