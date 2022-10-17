@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/leaderboard_screen.dart';
+import 'package:trivial_rush/screens/play_screen.dart';
 import 'package:trivial_rush/screens/purchases_screen.dart';
 import 'package:trivial_rush/widgets/home_page_dropdown.dart';
 
@@ -50,11 +51,17 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     // Play now
 
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GameStartCountdown(),
+                          ),
+                        );
+                      },
                       child: Container(
                         width: 153,
                         height: 153,
@@ -138,7 +145,6 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     //Leaderboard
 
                     GestureDetector(
