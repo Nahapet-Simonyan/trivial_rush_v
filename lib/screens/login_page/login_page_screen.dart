@@ -8,6 +8,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     bool isChecked =
         Provider.of<LoginPageCheckBoxProvider>(context, listen: false)
             .isChecked;
@@ -84,11 +85,7 @@ class LoginPage extends StatelessWidget {
                                 activeColor: const Color.fromRGBO(204, 0, 1, 1),
                                 value: isChecked,
                                 onChanged: (value) =>
-                                    Provider.of<LoginPageCheckBoxProvider>(
-                                            context,
-                                            listen: false)
-                                        .changeCheck(
-                                            isChecked == true ? false : true)),
+                                    context.read<LoginPageCheckBoxProvider>().changeCheck()),
                           ),
                         ],
                       ),

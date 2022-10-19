@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<LoginPageCheckBoxProvider>(
-          create: (context) => LoginPageCheckBoxProvider(),
+          create: (_) => LoginPageCheckBoxProvider(),
         ),
         ListenableProvider<PageControllerProvider>(
-          create: (context) => PageControllerProvider(),
+          create: (_) => PageControllerProvider(),
         ),
       ],
       child: MaterialApp(

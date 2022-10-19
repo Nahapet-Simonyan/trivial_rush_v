@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LoginPageCheckBoxProvider with ChangeNotifier {
-  bool isChecked = false;
+  bool isChecked;
 
+  LoginPageCheckBoxProvider({this.isChecked = false});
 
-  void changeCheck(bool ch) {
-    isChecked = ch;
+  void changeCheck() {
+    isChecked = !isChecked;
     notifyListeners();
   }
 }

@@ -9,10 +9,10 @@ import '../home_page/home_page_screen.dart';
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
 
-  var onBoardPages = InfoPageItems.loadOnBoardItem();
-  final currentPage = PageControllerProvider();
+  dynamic onBoardPages = InfoPageItems.loadOnBoardItem();
+  PageControllerProvider currentPage = PageControllerProvider();
 
-  final PageController _pageController = PageController(initialPage: 0);
+  PageController _pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
