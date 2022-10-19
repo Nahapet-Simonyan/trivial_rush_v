@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:dio/src/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:trivial_rush/models/leaderboard.dart';
 
@@ -22,3 +23,4 @@ Future<List<LeaderBoard>> fetchLeaderboard() async {
     throw Exception('Failed to load Leaderboard Data');
   }
 }
+

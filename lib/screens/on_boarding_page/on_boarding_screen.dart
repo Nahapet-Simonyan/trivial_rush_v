@@ -1,43 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:trivial_rush/screens/info/info_page_items.dart';
+import 'package:trivial_rush/screens/on_boarding_page/on_boarding_items.dart';
+import 'package:trivial_rush/screens/on_boarding_page/page_view_controller.dart';
 
 import '../home_page/home_page_screen.dart';
 
-class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends StatelessWidget {
+  OnBoardingScreen({Key? key}) : super(key: key);
 
-  @override
-  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
-}
-
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
   var onBoardPages = InfoPageItems.loadOnBoardItem();
+  final currentPage = PageControllerProvider();
 
-  final controller = PageController();
-  bool isLastPage = false;
-
-  int activePage = 0;
-
-  @override
-  void dispose() {
-    controller.dispose();
-
-    super.dispose();
-  }
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
+
+    int activePage = Provider.of<PageControllerProvider>(context, listen: false).page.initialPage;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(bottom: 59),
         child: PageView(
-          controller: controller,
-          onPageChanged: (index) {
-            setState(() {
-              activePage = index;
-            });
-          },
+          controller: _pageController,
+          onPageChanged: (index) =>
+              context.read<PageControllerProvider>().changePage(index),
+          // onPageChanged: (index) {
+          //   setState(() {
+          //     activePage = index;
+          //   });
+          // },
           children: [
             SingleChildScrollView(
               child: Column(
@@ -143,7 +135,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       MaterialPageRoute(
                         builder: (context) => const HomePage(),
                       ),
-                        (route) => false,
+                      (route) => false,
                     );
                   },
                   child: Padding(
@@ -181,7 +173,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               height: 59,
               child: Center(
                 child: SmoothPageIndicator(
-                  controller: controller,
+                  controller: context.read<PageControllerProvider>().page,
                   count: 4,
                   effect: WormEffect(
                     activeDotColor: onBoardPages[activePage].color,
@@ -189,7 +181,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     dotWidth: 12,
                     dotHeight: 12,
                   ),
-                  onDotClicked: (index) => controller.animateToPage(
+                  onDotClicked: (index) => context.read<PageControllerProvider>().page.animateToPage(
                     index,
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.linear,
@@ -200,3 +192,31 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 }
+
+// class OnBoardingScreen extends StatefulWidget {
+//   const OnBoardingScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+// }
+//
+// class _OnBoardingScreenState extends State<OnBoardingScreen> {
+//   var onBoardPages = InfoPageItems.loadOnBoardItem();
+//
+//   final controller = PageController();
+//   bool isLastPage = false;
+//
+//   int activePage = 0;
+//
+//   @override
+//   void dispose() {
+//     controller.dispose();
+//
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }

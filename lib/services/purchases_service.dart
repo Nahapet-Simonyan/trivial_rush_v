@@ -11,7 +11,7 @@ Future<List<Purchases>> fetchPurchases() async {
 
   List<Purchases> result = List.empty(growable: true);
   if (response.statusCode == 200) {
-    List<dynamic> body = json.decode(response.body);
+    List<dynamic> body = json.decode(response.body[0]);
     if (response.body.isNotEmpty) {
       for (var element in body[0]) {
         result.add(Purchases.fromJson(element));

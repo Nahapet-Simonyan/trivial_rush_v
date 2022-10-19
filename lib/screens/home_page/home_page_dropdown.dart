@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/login_page_screen/login_page_screen.dart';
+import '../login_page/login_page_screen.dart';
 
 Widget dropdownListView(context) {
   return ListView(
@@ -75,7 +75,7 @@ Widget dropdownListView(context) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => LoginPage(),
               ),
             );
           },

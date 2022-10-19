@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/info/onboarding_screen.dart';
+import 'package:provider/provider.dart';
+import '../on_boarding_page/on_boarding_screen.dart';
+import 'login_page_provider.dart';
 
-
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool isChecked = false;
-
-  @override
   Widget build(BuildContext context) {
+    bool isChecked =
+        Provider.of<LoginPageCheckBoxProvider>(context, listen: false)
+            .isChecked;
+
     return Scaffold(
       body: SingleChildScrollView(
 // Logo Image
@@ -74,22 +72,23 @@ class _LoginPageState extends State<LoginPage> {
 
                           SizedBox(
                             child: CheckboxListTile(
-                              title: const Text(
-                                "Remember Password",
-                                style: TextStyle(
-                                  fontFamily: 'Sans Serif',
-                                  fontSize: 12,
+                                title: const Text(
+                                  "Remember Password",
+                                  style: TextStyle(
+                                    fontFamily: 'Sans Serif',
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
-                              controlAffinity: ListTileControlAffinity.leading,
-                              activeColor: const Color.fromRGBO(204, 0, 1, 1),
-                              value: isChecked,
-                              onChanged: (changedValue) {
-                                setState(() {
-                                  isChecked = changedValue!;
-                                });
-                              }, //  <-- leading Checkbox
-                            ),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                                activeColor: const Color.fromRGBO(204, 0, 1, 1),
+                                value: isChecked,
+                                onChanged: (value) =>
+                                    Provider.of<LoginPageCheckBoxProvider>(
+                                            context,
+                                            listen: false)
+                                        .changeCheck(
+                                            isChecked == true ? false : true)),
                           ),
                         ],
                       ),
@@ -102,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const OnBoardingScreen(),
+                              builder: (context) => OnBoardingScreen(),
                             ),
                             (route) => false);
                       },
@@ -127,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-// ************* Forgot Password Button ****************************************
+// Forgot Password Button
 
                     GestureDetector(
                       onTap: () {},
@@ -139,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-// ************* Sign Up Button ************************************************
+// Sign Up Button
 
                     GestureDetector(
                       onTap: () {},
@@ -160,3 +159,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+//
+// class LoginPage extends StatefulWidget {
+//   const LoginPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<LoginPage> createState() => _LoginPageState();
+// }
+//
+// class _LoginPageState extends State<LoginPage> {
+//   bool isChecked = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
