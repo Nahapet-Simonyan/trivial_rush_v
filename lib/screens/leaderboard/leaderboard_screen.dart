@@ -1,26 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:trivial_rush/constants/colors_list/colors_list.dart';
 import 'package:trivial_rush/core/trivial_rush_client.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_item.dart';
+import 'package:trivial_rush/widgets/sub_screen_appbar.dart';
 import '../../core/models/leaderboard_model/leaderboard.dart';
 
 class LeaderboardScreen extends StatelessWidget {
   LeaderboardScreen({Key? key}) : super(key: key);
 
   late Future<List<Leaderboard>> futureLeaderboard;
-  static const List<Color> colorList = <Color>[
-    Color.fromRGBO(255, 102, 0, 1),
-    Color.fromRGBO(204, 0, 1, 1),
-    Color.fromRGBO(0, 51, 204, 1),
-    Color.fromRGBO(255, 204, 0, 1),
-    Color.fromRGBO(103, 0, 152, 1),
-    Color.fromRGBO(0, 153, 0, 1),
-  ];
 
   @override
   Widget build(BuildContext context) {
-
-    futureLeaderboard = IndigoAPI().leaderboardService.getLeaderboardData();
+    futureLeaderboard = TrivialRushAPI().leaderboardService.getLeaderboardData();
 
     return MaterialApp(
       title: 'Fetch Data Example',
@@ -28,26 +21,11 @@ class LeaderboardScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 30,
-            ),
-          ),
-          centerTitle: true,
-          title: const Text(
-            'Leaderboard',
-            style: TextStyle(
-              fontFamily: 'AmericanTypeWriter',
-              fontSize: 24,
-            ),
-          ),
-          backgroundColor: const Color.fromRGBO(255, 102, 0, 1),
-        ),
+        appBar: subScreenAppBar(
+            context: context,
+            backgroundColor: const Color.fromRGBO(255, 102, 0, 1),
+            itemsColor: Colors.white,
+            text: 'Leaderboard'),
         body: Center(
           child: FutureBuilder<List<Leaderboard>>(
             future: futureLeaderboard,
@@ -60,11 +38,11 @@ class LeaderboardScreen extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         // sorting: highest score to lowest score
                         snapshot.data?.sort(
-                              (a, b) => b.score!.compareTo(a.score!),
+                          (a, b) => b.score!.compareTo(a.score!),
                         );
                         var item = snapshot.data?[index];
                         return leaderboardItem(
-                            context, snapshot, colorList, index, item);
+                            context, snapshot, leaderboardColorList, index, item);
                       }),
                 );
               } else if (snapshot.hasError) {

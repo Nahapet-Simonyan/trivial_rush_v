@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trivial_rush/screens/login_page/login_page_provider.dart';
+import 'package:trivial_rush/screens/login_page/provider/login_page_provider.dart';
 import 'package:trivial_rush/screens/login_page/login_page_screen.dart';
-import 'package:trivial_rush/screens/on_boarding_page/page_view_controller.dart';
+import 'package:trivial_rush/screens/on_board_page/provider/page_view_controller.dart';
 
 void main() => runApp(const MyApp());
 

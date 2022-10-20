@@ -1,26 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/purchases/purchases_item.dart';
+import 'package:trivial_rush/constants/colors_list/colors_list.dart';
+import 'package:trivial_rush/screens/purchases/widgets/purchases_item.dart';
+import 'package:trivial_rush/widgets/sub_screen_appbar.dart';
 import '../../core/models/purchases_model/purchases.dart';
 import '../../core/trivial_rush_client.dart';
 
 class PurchasesScreen extends StatelessWidget {
-   PurchasesScreen({Key? key}) : super(key: key);
+  PurchasesScreen({Key? key}) : super(key: key);
 
   late Future<List<Purchases>> futurePurchases;
-  static const List<Color> colorList = <Color>[
-    Color.fromRGBO(0, 51, 204, 1),
-    Color.fromRGBO(204, 0, 1, 1),
-    Color.fromRGBO(255, 204, 0, 1),
-    Color.fromRGBO(103, 0, 152, 1),
-    Color.fromRGBO(0, 153, 0, 1),
-    Color.fromRGBO(255, 102, 0, 1),
-  ];
 
   @override
   Widget build(BuildContext context) {
 
-    futurePurchases = IndigoAPI().purchasesService.getPurchasesData();
+    futurePurchases = TrivialRushAPI().purchasesService.getPurchasesData();
 
     return MaterialApp(
       title: 'Fetch Data Example',
@@ -28,28 +22,11 @@ class PurchasesScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 30,
-              color: Color.fromRGBO(0, 153, 0, 1),
-            ),
-          ),
-          centerTitle: true,
-          title: const Text(
-            'Purchases',
-            style: TextStyle(
-              fontFamily: 'AmericanTypeWriter',
-              fontSize: 24,
-              color: Color.fromRGBO(0, 153, 0, 1),
-            ),
-          ),
-          backgroundColor: Colors.white,
-        ),
+        appBar: subScreenAppBar(
+            context: context,
+            backgroundColor: Colors.white,
+            itemsColor: const Color.fromRGBO(0, 153, 0, 1),
+            text: 'Purchases'),
         body: Container(
           color: const Color.fromRGBO(0, 153, 0, 1),
           child: Padding(
@@ -72,15 +49,16 @@ class PurchasesScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           // sorting: lowest plays_count to highest plays_count
                           snapshot.data?.sort(
-                                (a, b) => a.plays_count!.compareTo(b.plays_count!),
+                            (a, b) => a.plays_count!.compareTo(b.plays_count!),
                           );
                           var item = snapshot.data?[index];
-                          return purchasesItem(context, snapshot, colorList, index, item);
+                          return purchasesItem(
+                              context, snapshot, purchasesColorList, index, item);
                         });
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
                   }
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 },
               ),
             ),
@@ -90,27 +68,3 @@ class PurchasesScreen extends StatelessWidget {
     );
   }
 }
-
-//
-// class PurchasesScreen extends StatefulWidget {
-//   const PurchasesScreen({super.key});
-//
-//   @override
-//   State<PurchasesScreen> createState() => _PurchasesScreenState();
-// }
-//
-// class _PurchasesScreenState extends State<PurchasesScreen> {
-//   late Future<List<Purchases>> futurePurchases;
-//
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     futurePurchases = IndigoAPI().p;
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }

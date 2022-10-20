@@ -6,22 +6,24 @@ import 'api/api_constants.dart';
 import 'services/leaderboard_service.dart';
 import 'services/purchases_service.dart';
 
-class IndigoAPI {
-  static IndigoAPI? _singleton;
+class TrivialRushAPI {
+  static TrivialRushAPI? _singleton;
 
   late LeaderboardService leaderboardService;
   late PurchasesService purchasesService;
 
-  Dio appDioClient = Dio(BaseOptions(baseUrl: APIConstants.baseUrl));
+  Dio appDioClient = Dio(
+    BaseOptions(baseUrl: APIConstants.baseUrl),
+  );
 
-  factory IndigoAPI() {
+  factory TrivialRushAPI() {
     if (_singleton == null) {
-      _singleton = IndigoAPI._internal();
+      _singleton = TrivialRushAPI._internal();
     }
     return _singleton!;
   }
 
-  IndigoAPI._internal() {
+  TrivialRushAPI._internal() {
     // Init subclasses
     leaderboardService = LeaderboardService(appDioClient);
     purchasesService = PurchasesService(appDioClient);

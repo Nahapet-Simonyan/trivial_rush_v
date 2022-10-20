@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../on_boarding_page/on_boarding_screen.dart';
-import 'login_page_provider.dart';
+import 'package:trivial_rush/screens/login_page/widgets/form.dart';
+import 'package:trivial_rush/widgets/general_button.dart';
+import '../on_board_page/on_board_screen.dart';
+import 'provider/login_page_provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     bool isChecked =
-        Provider.of<LoginPageCheckBoxProvider>(context, listen: true)
-            .isChecked;
+        Provider.of<LoginPageCheckBoxProvider>(context, listen: true).isChecked;
 
     return Scaffold(
       body: SingleChildScrollView(
-// Logo Image
-
         child: SizedBox(
           width: MediaQuery.of(context).size.height,
           child: SizedBox(
@@ -27,104 +25,35 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // Logo Image
                     Image.asset(
                       'assets/images/main_logo.png',
                       width: 213,
                       height: 157,
                     ),
 
-// Input Form
+                    // Input Form
+                    loginPageForm(context, isChecked),
 
-                    Form(
-                      child: Column(
-                        children: [
-// Email TextField
-
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Email*',
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: Color.fromRGBO(220, 220, 220, 1),
-                                ),
-                              ),
-                            ),
-                          ),
-
-// Password TextField
-
-                          const TextField(
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
-                            decoration: InputDecoration(
-                              hintText: 'Password',
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 1,
-                                  color: Color.fromRGBO(220, 220, 220, 1),
-                                ),
-                              ),
-                            ),
-                          ),
-
-// Remember Password CheckBox
-
-                          SizedBox(
-                            child: CheckboxListTile(
-                                title: const Text(
-                                  "Remember Password",
-                                  style: TextStyle(
-                                    fontFamily: 'Sans Serif',
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                controlAffinity:
-                                    ListTileControlAffinity.leading,
-                                activeColor: const Color.fromRGBO(204, 0, 1, 1),
-                                value: isChecked,
-                                onChanged: (value) =>
-                                    context.read<LoginPageCheckBoxProvider>().changeCheck()),
-                          ),
-                        ],
-                      ),
-                    ),
-
-// Login Button
-
+                    // Login Button
                     GestureDetector(
                       onTap: () {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => OnBoardingScreen(),
+                              builder: (context) => const OnBoardingScreen(),
                             ),
                             (route) => false);
                       },
-                      child: Container(
-                        width: 154,
-                        height: 40,
-                        decoration: const BoxDecoration(
-                            color: Color.fromRGBO(204, 0, 1, 1),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              bottomRight: Radius.circular(20.0),
-                            )),
-                        child: const Center(
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: generalButton(
+                          width: 154.0,
+                          height: 40.0,
+                          color: const Color.fromRGBO(204, 0, 1, 1),
+                          text: 'Login',
+                          fontSize: 20.0),
                     ),
 
-// Forgot Password Button
-
+                    // Forgot Password Button
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
@@ -135,8 +64,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
 
-// Sign Up Button
-
+                    // Sign Up Button
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
@@ -156,20 +84,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-//
-// class LoginPage extends StatefulWidget {
-//   const LoginPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<LoginPage> createState() => _LoginPageState();
-// }
-//
-// class _LoginPageState extends State<LoginPage> {
-//   bool isChecked = false;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
