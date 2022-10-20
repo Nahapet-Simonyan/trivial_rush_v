@@ -8,7 +8,7 @@ class CountDownItem {
 }
 
 class CountDownItems {
-  static List<CountDownItem> loadCountdounItem() {
+  static List<CountDownItem> loadCountDownItem() {
     var items = <CountDownItem>[
       CountDownItem(
         text: const Text(

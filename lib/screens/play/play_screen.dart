@@ -3,20 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'countdown_items.dart';
 
-class GameStartCountdown extends StatefulWidget {
-  const GameStartCountdown({Key? key}) : super(key: key);
+class GameStartCountdown extends StatelessWidget {
+  GameStartCountdown({Key? key}) : super(key: key);
 
-  @override
-  State<GameStartCountdown> createState() => _GameStartCountdownState();
-}
-
-class _GameStartCountdownState extends State<GameStartCountdown> {
+  int totalPages = CountDownItems.loadCountDownItem().length;
   var currentPage = 0;
-
 
   @override
   Widget build(BuildContext context) {
-    int totalPages = CountDownItems.loadCountdounItem().length;
     return CarouselSlider.builder(
         itemCount: totalPages,
         options: CarouselOptions(
@@ -27,8 +21,10 @@ class _GameStartCountdownState extends State<GameStartCountdown> {
           viewportFraction: 1,
         ),
         itemBuilder: (BuildContext context, int index, realIndex) {
-          CountDownItem countDownPages = CountDownItems.loadCountdounItem()[index];
+
+          CountDownItem countDownPages = CountDownItems.loadCountDownItem()[index];
           currentPage = index;
+
           return Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
