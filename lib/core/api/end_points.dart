@@ -1,4 +1,4 @@
-abstract class EndPoint {
-  static String films = 'api/leaderboard';
-  static String people = 'api/purchases';
+ class EndPoint {
+  static String leaderboard = 'leaderboard';
+  static String purchases = 'purchases';
 }

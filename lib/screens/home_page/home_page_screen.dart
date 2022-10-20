@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const PurchasesScreen(),
+                            builder: (context) => PurchasesScreen(),
                           ),
                         );
                       },
@@ -152,7 +152,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LeaderboardScreen(),
+                            builder: (context) => LeaderboardScreen(),
                           ),
                         );
                       },

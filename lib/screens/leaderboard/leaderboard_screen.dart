@@ -1,19 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/core/services/tr_service.dart';
-import 'package:trivial_rush/models/leaderboard.dart';
+import 'package:trivial_rush/core/trivial_rush_client.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_item.dart';
-import '../../services/leaderboard_service.dart';
+import '../../core/models/leaderboard_model/leaderboard.dart';
 
-class LeaderboardScreen extends StatefulWidget {
-  const LeaderboardScreen({super.key});
+class LeaderboardScreen extends StatelessWidget {
+  LeaderboardScreen({Key? key}) : super(key: key);
 
-  @override
-  State<LeaderboardScreen> createState() => _LeaderboardScreenState();
-}
-
-class _LeaderboardScreenState extends State<LeaderboardScreen> {
-  late Future<List<LeaderBoard>> futureLeaderboard;
+  late Future<List<Leaderboard>> futureLeaderboard;
   static const List<Color> colorList = <Color>[
     Color.fromRGBO(255, 102, 0, 1),
     Color.fromRGBO(204, 0, 1, 1),
@@ -24,13 +18,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    futureLeaderboard = fetchLeaderboard();
-  }
-
-  @override
   Widget build(BuildContext context) {
+
+    futureLeaderboard = IndigoAPI().leaderboardService.getLeaderboardData();
+
     return MaterialApp(
       title: 'Fetch Data Example',
       theme: ThemeData(
@@ -58,7 +49,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           backgroundColor: const Color.fromRGBO(255, 102, 0, 1),
         ),
         body: Center(
-          child: FutureBuilder<List<LeaderBoard>>(
+          child: FutureBuilder<List<Leaderboard>>(
             future: futureLeaderboard,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -69,7 +60,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         // sorting: highest score to lowest score
                         snapshot.data?.sort(
-                          (a, b) => b.score!.compareTo(a.score!),
+                              (a, b) => b.score!.compareTo(a.score!),
                         );
                         var item = snapshot.data?[index];
                         return leaderboardItem(

@@ -1,27 +1,26 @@
 import 'package:dio/dio.dart';
+import 'package:trivial_rush/core/api/end_points.dart';
+import '../models/purchases_model/purchases.dart';
 
-import '../../models/leaderboard.dart';
-import '../../models/purchases.dart';
-
-class PurchasesApi {
+class PurchasesService {
   final Dio appDioClient;
 
-  PurchasesApi(
-      this.appDioClient,
-      );
+  PurchasesService(
+    this.appDioClient,
+  );
 
-  Future<List<Purchases>> getProductsData() async {
+  Future<List<Purchases>> getPurchasesData() async {
     List<Purchases> purchases = [];
 
     final result = await appDioClient.get(
-      'https://my-json-server.typicode.com/narekpog/my-json/products',
+      EndPoint.purchases,
     );
 
     if (result.data is List) {
       purchases = result.data.first
-          .map<LeaderBoard>(
+          .map<Purchases>(
             (e) => Purchases.fromJson(e),
-      )
+          )
           .toList();
     }
 

@@ -1,17 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/models/purchases.dart';
 import 'package:trivial_rush/screens/purchases/purchases_item.dart';
-import '../../services/purchases_service.dart';
+import '../../core/models/purchases_model/purchases.dart';
+import '../../core/trivial_rush_client.dart';
 
-class PurchasesScreen extends StatefulWidget {
-  const PurchasesScreen({super.key});
+class PurchasesScreen extends StatelessWidget {
+   PurchasesScreen({Key? key}) : super(key: key);
 
-  @override
-  State<PurchasesScreen> createState() => _PurchasesScreenState();
-}
-
-class _PurchasesScreenState extends State<PurchasesScreen> {
   late Future<List<Purchases>> futurePurchases;
   static const List<Color> colorList = <Color>[
     Color.fromRGBO(0, 51, 204, 1),
@@ -23,13 +18,10 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    futurePurchases = fetchPurchases();
-  }
-
-  @override
   Widget build(BuildContext context) {
+
+    futurePurchases = IndigoAPI().purchasesService.getPurchasesData();
+
     return MaterialApp(
       title: 'Fetch Data Example',
       theme: ThemeData(
@@ -80,7 +72,7 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           // sorting: lowest plays_count to highest plays_count
                           snapshot.data?.sort(
-                            (a, b) => a.plays_count!.compareTo(b.plays_count!),
+                                (a, b) => a.plays_count!.compareTo(b.plays_count!),
                           );
                           var item = snapshot.data?[index];
                           return purchasesItem(context, snapshot, colorList, index, item);
@@ -98,3 +90,27 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
     );
   }
 }
+
+//
+// class PurchasesScreen extends StatefulWidget {
+//   const PurchasesScreen({super.key});
+//
+//   @override
+//   State<PurchasesScreen> createState() => _PurchasesScreenState();
+// }
+//
+// class _PurchasesScreenState extends State<PurchasesScreen> {
+//   late Future<List<Purchases>> futurePurchases;
+//
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     futurePurchases = IndigoAPI().p;
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }

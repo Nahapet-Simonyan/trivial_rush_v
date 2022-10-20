@@ -7,24 +7,26 @@ import 'package:trivial_rush/screens/on_boarding_page/page_view_controller.dart'
 import '../home_page/home_page_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
-
-  dynamic onBoardPages = InfoPageItems.loadOnBoardItem();
-  PageControllerProvider currentPage = PageControllerProvider();
-
-  PageController _pageController = PageController(initialPage: 0);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var onBoardPages = InfoPageItems.loadOnBoardItem();
 
-    int activePage = Provider.of<PageControllerProvider>(context, listen: false).page.initialPage;
+    int pageIndex = Provider.of<PageControllerProvider>(context, listen: true)
+        .pageIndex;
+
+    PageController pageController =
+        Provider.of<PageControllerProvider>(context, listen: true).page;
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(bottom: 59),
         child: PageView(
-          controller: _pageController,
+          controller: pageController,
           onPageChanged: (index) =>
-              context.read<PageControllerProvider>().changePage(index),
+              Provider.of<PageControllerProvider>(context, listen: false)
+                  .changePage(index),
           // onPageChanged: (index) {
           //   setState(() {
           //     activePage = index;
@@ -121,7 +123,7 @@ class OnBoardingScreen extends StatelessWidget {
 
 /* --- Bottom Page Indicator --- */
 
-      bottomSheet: activePage == 3
+      bottomSheet: Provider.of<PageControllerProvider>(context).pageIndex == 3
 
 // Go To Home Page Button
 
@@ -165,27 +167,22 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
             )
-          :
 
 // Indicator
 
-          SizedBox(
+          : SizedBox(
               height: 59,
               child: Center(
                 child: SmoothPageIndicator(
-                  controller: context.read<PageControllerProvider>().page,
+                  controller: pageController,
                   count: 4,
                   effect: WormEffect(
-                    activeDotColor: onBoardPages[activePage].color,
+                    activeDotColor: onBoardPages[pageIndex].color,
                     dotColor: const Color.fromRGBO(196, 196, 196, 1),
                     dotWidth: 12,
                     dotHeight: 12,
                   ),
-                  onDotClicked: (index) => context.read<PageControllerProvider>().page.animateToPage(
-                    index,
-                    duration: const Duration(milliseconds: 100),
-                    curve: Curves.linear,
-                  ),
+                  // onDotClicked: (index) => ,
                 ),
               ),
             ),

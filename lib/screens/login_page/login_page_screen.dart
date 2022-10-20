@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     bool isChecked =
-        Provider.of<LoginPageCheckBoxProvider>(context, listen: false)
+        Provider.of<LoginPageCheckBoxProvider>(context, listen: true)
             .isChecked;
 
     return Scaffold(
