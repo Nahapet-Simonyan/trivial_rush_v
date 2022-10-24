@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:trivial_rush/core/services/leaderboard_service.dart';
 import 'package:trivial_rush/core/services/purchases_service.dart';
+import 'package:trivial_rush/core/services/quiz_service.dart';
 import 'api/api_constants.dart';
 import 'services/leaderboard_service.dart';
 import 'services/purchases_service.dart';
@@ -11,6 +12,7 @@ class TrivialRushAPI {
 
   late LeaderboardService leaderboardService;
   late PurchasesService purchasesService;
+  late QuizService quizService;
 
   Dio appDioClient = Dio(
     BaseOptions(baseUrl: APIConstants.baseUrl),
@@ -27,5 +29,6 @@ class TrivialRushAPI {
     // Init subclasses
     leaderboardService = LeaderboardService(appDioClient);
     purchasesService = PurchasesService(appDioClient);
+    quizService = QuizService(appDioClient);
   }
 }

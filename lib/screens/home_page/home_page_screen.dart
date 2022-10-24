@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_items.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
-import 'package:trivial_rush/screens/play/play_screen.dart';
+import 'package:trivial_rush/screens/play_game/screens/play_screen.dart';
 import 'package:trivial_rush/screens/purchases/purchases_screen.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_dropdown.dart';
 

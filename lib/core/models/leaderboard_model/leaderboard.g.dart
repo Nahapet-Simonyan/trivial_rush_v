@@ -7,12 +7,12 @@ part of 'leaderboard.dart';
 // **************************************************************************
 
 Leaderboard _$LeaderboardFromJson(Map<String, dynamic> json) => Leaderboard(
-  id: json['id'] as String?,
-  user_image_url: json['user_image_url'] as String?,
-  first_name: json['first_name'] as String?,
-  last_name: json['last_name'] as String?,
-  score: (json['score'] as num?)?.toDouble(),
-);
+      id: json['id'] as String?,
+      user_image_url: json['user_image_url'] as String?,
+      first_name: json['first_name'] as String?,
+      last_name: json['last_name'] as String?,
+      score: (json['score'] as num?)?.toDouble(),
+    );
 
 Map<String, dynamic> _$LeaderboardToJson(Leaderboard instance) =>
     <String, dynamic>{
