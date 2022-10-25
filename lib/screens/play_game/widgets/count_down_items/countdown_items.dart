@@ -12,18 +12,6 @@ class CountDownItems {
     var items = <CountDownItem>[
       CountDownItem(
         text: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-        color: const Color.fromRGBO(255, 102, 0, 1),
-      ),
-      CountDownItem(
-        text: const Text(
           '5',
           style: TextStyle(
             color: Colors.white,
@@ -93,6 +81,18 @@ class CountDownItems {
           ),
         ),
         color: const Color.fromRGBO(0, 153, 0, 1),
+      ),
+      CountDownItem(
+        text: const Text(
+          '',
+          style: TextStyle(
+            color: Colors.white,
+            decoration: TextDecoration.none,
+            fontSize: 96,
+            fontFamily: 'AmericanTypeWriter',
+          ),
+        ),
+        color: Colors.white,
       ),
     ];
     return items;

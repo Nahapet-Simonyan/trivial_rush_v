@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_items.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
-import 'package:trivial_rush/screens/play_game/screens/play_screen.dart';
 import 'package:trivial_rush/screens/purchases/purchases_screen.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_dropdown.dart';
+
+import '../play_game/quiz_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,7 +59,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => GameStartCountdown(),
+                            builder: (context) => QuizScreen(),
                           ),
                         );
                       },

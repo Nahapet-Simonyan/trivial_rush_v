@@ -1,63 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/core/models/quiz_model/quiz.dart';
-import 'package:trivial_rush/screens/play_game/widgets/app_bar.dart';
+import 'package:trivial_rush/screens/play_game/screens/play_screen.dart';
 import '../../core/trivial_rush_client.dart';
 
-void main() => runApp(const MyApp());
+class QuizScreen extends StatelessWidget {
+  QuizScreen({Key? key}) : super(key: key);
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountDownTimer(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-class CountDownTimer extends StatelessWidget {
-  CountDownTimer({Key? key}) : super(key: key);
-
-  late Future <List<Quiz>> futureQuiz;
+  late Future<List<Quiz>> futureQuiz;
+  final controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     futureQuiz = TrivialRushAPI().quizService.getQuizData();
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            quizAppBar(context),
-            FutureBuilder<List<Quiz>>(
-              future: futureQuiz,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 70.0),
-                        child: Center(
-                          child: Text(
-                            '${snapshot.data?[0].question_text}',
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-          ],
+        body: FutureBuilder<List<Quiz>>(
+          future: futureQuiz,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.white,
+                child: gameStartCountDown(context, snapshot, controller),
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: const Color.fromRGBO(255, 102, 0, 1),
+              child: const Center(
+                child: Text(
+                  'Get Ready',
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                    fontSize: 48,
+                    fontFamily: 'AmericanTypeWriter',
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

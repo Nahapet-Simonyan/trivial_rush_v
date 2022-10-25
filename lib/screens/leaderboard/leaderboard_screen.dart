@@ -31,20 +31,17 @@ class LeaderboardScreen extends StatelessWidget {
             future: futureLeaderboard,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 70.0),
-                  child: ListView.builder(
-                      itemCount: snapshot.data?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        // sorting: highest score to lowest score
-                        snapshot.data?.sort(
-                          (a, b) => b.score!.compareTo(a.score!),
-                        );
-                        var item = snapshot.data?[index];
-                        return leaderboardItem(
-                            context, snapshot, leaderboardColorList, index, item);
-                      }),
-                );
+                return ListView.builder(
+                    itemCount: snapshot.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      // sorting: highest score to lowest score
+                      snapshot.data?.sort(
+                        (a, b) => b.score!.compareTo(a.score!),
+                      );
+                      var item = snapshot.data?[index];
+                      return leaderboardItem(
+                          context, snapshot, leaderboardColorList, index, item);
+                    });
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
