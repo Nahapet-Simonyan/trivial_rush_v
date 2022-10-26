@@ -4,7 +4,7 @@ import 'package:trivial_rush/screens/login_page/provider/login_page_provider.dar
 import 'package:trivial_rush/screens/login_page/login_page_screen.dart';
 import 'package:trivial_rush/screens/on_boarding/provider/page_view_controller.dart';
 import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
-import 'package:trivial_rush/screens/play_game/providers/quiz_page_controller.dart';
+import 'package:trivial_rush/screens/play_game/providers/quiz_color_controller.dart';
 
 void main() => runApp(const MyApp());
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           create: (_) => PageControllerProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => QuizPageController(),
+          create: (_) => QuizColorController(),
         ),
         ChangeNotifierProvider(
           create: (_) => CountdownController(),

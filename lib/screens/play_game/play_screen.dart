@@ -7,7 +7,6 @@ class QuizScreen extends StatelessWidget {
   QuizScreen({Key? key}) : super(key: key);
 
   late Future<List<Quiz>> futureQuiz;
-  final controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class QuizScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 color: Colors.white,
                 // Start
-                child: gameStartCountDown(context, snapshot, controller),
+                child: gameStartCountDown(context, snapshot),
               );
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');

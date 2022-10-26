@@ -3,7 +3,7 @@ import 'package:trivial_rush/constants/colors_list/colors_list.dart';
 import 'package:trivial_rush/screens/home_page/home_page_screen.dart';
 import 'package:trivial_rush/screens/play_game/widgets/app_bar/quiz_app_bar_circular_tween.dart';
 
-Widget quizAppBar(context, snapshot, index) {
+Widget quizAppBar(quizPageController, context, snapshot, index) {
   return Container(
     color: Colors.white10,
     child: Stack(
@@ -36,7 +36,7 @@ Widget quizAppBar(context, snapshot, index) {
             ),
           ],
         ),
-        circularAppBar(snapshot, index),
+        circularAppBar(context, quizPageController, snapshot, index, quizPageController),
       ],
     ),
   );

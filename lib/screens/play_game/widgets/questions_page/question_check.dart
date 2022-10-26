@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/quiz_page_controller.dart';
+import '../../providers/quiz_color_controller.dart';
 import 'answer_button_style.dart';
 
 Widget questionCheck(context, snapshot, index, scoreT, controller) {
@@ -24,10 +24,10 @@ Widget questionCheck(context, snapshot, index, scoreT, controller) {
               if (snapshot.data?[index].answers?[qIndex]
               ['correct_answer'] ==
                   true) {
-                context.read<QuizPageController>().changeColor(index);
+                context.read<QuizColorController>().changeColor(index);
                 scoreT += 10;
               } else {
-                context.read<QuizPageController>().falseAnswer();
+                context.read<QuizColorController>().falseAnswer();
               }
               controller.nextPage(
                   duration: const Duration(milliseconds: 500),
@@ -41,7 +41,7 @@ Widget questionCheck(context, snapshot, index, scoreT, controller) {
                 color: snapshot.data?[index].answers?[qIndex]
                 ['correct_answer'] ==
                     true
-                    ? Provider.of<QuizPageController>(context,
+                    ? Provider.of<QuizColorController>(context,
                     listen: true)
                     .textColor
                     : const Color.fromRGBO(74, 74, 74, 1),

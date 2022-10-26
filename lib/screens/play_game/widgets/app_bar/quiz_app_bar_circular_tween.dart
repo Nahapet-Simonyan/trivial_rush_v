@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../constants/colors_list/colors_list.dart';
 
-Widget circularAppBar(snapshot, index) {
+Widget circularAppBar(BuildContext context, controller, snapshot, index, quizPageController) {
   int seconds = snapshot.data![index].question_seconds;
   return Align(
     alignment: Alignment.topCenter,
@@ -28,6 +28,11 @@ Widget circularAppBar(snapshot, index) {
                   backgroundColor: leaderboardColorList[index % leaderboardColorList.length],
                   strokeWidth: 8,
                 ),
+            onEnd:() {
+              quizPageController.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.linear);
+            },
           ),
         ),
       ),

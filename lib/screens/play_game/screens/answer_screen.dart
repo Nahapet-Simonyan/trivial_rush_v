@@ -3,26 +3,30 @@ import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/play_game/widgets/score_page/last_page_button.dart';
 import 'package:trivial_rush/screens/play_game/widgets/questions_page/question_text.dart';
 import '../providers/countdown_controller.dart';
-import '../providers/quiz_page_controller.dart';
+import '../providers/quiz_color_controller.dart';
 import '../widgets/app_bar/quiz_app_bar.dart';
 import '../widgets/questions_page/answer_button_style.dart';
 import '../widgets/score_page/last_page_score.dart';
 
-Widget answerScreen(context, snapshot, controller) {
+Widget answerScreen(context, snapshot) {
   Provider.of<CountdownController>(context, listen: false).changeIndex(0);
   Provider.of<CountdownController>(context, listen: false).changeAutoPlay(true);
+
+  PageController quizPageController = PageController(initialPage: 0);
+
   int scoreT = 0;
   return PageView.builder(
-    controller: controller,
+    controller: quizPageController,
     reverse: false,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (BuildContext context, int index) {
-      context.read<QuizPageController>().defaultColor();
+      context.read<QuizColorController>().defaultColor();
+
       if (index < snapshot.data!.length) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            quizAppBar(context, snapshot, index),
+            quizAppBar(quizPageController, context, snapshot, index),
             questionText(snapshot, index),
             Padding(
               padding: const EdgeInsets.only(top: 30),
@@ -44,12 +48,12 @@ Widget answerScreen(context, snapshot, controller) {
                         if (snapshot.data?[index].answers?[qIndex]
                                 ['correct_answer'] ==
                             true) {
-                          context.read<QuizPageController>().changeColor(index);
+                          context.read<QuizColorController>().changeColor(index);
                           scoreT += 10;
                         } else {
-                          context.read<QuizPageController>().falseAnswer();
+                          context.read<QuizColorController>().falseAnswer();
                         }
-                        controller.nextPage(
+                        quizPageController.nextPage(
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.linear);
                       },
@@ -61,7 +65,7 @@ Widget answerScreen(context, snapshot, controller) {
                           color: snapshot.data?[index].answers?[qIndex]
                                       ['correct_answer'] ==
                                   true
-                              ? Provider.of<QuizPageController>(context,
+                              ? Provider.of<QuizColorController>(context,
                                       listen: true)
                                   .textColor
                               : const Color.fromRGBO(74, 74, 74, 1),

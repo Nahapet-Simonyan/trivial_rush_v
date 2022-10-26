@@ -5,7 +5,7 @@ import 'package:trivial_rush/screens/play_game/providers/countdown_controller.da
 import 'answer_screen.dart';
 import '../widgets/count_down_items/countdown_items.dart';
 
-Widget gameStartCountDown(context, snapshot, controller) {
+Widget gameStartCountDown(context, snapshot) {
   int totalPages = CountDownItems.loadCountDownItem().length;
   int currentIndex = Provider.of<CountdownController>(context, listen: true).currentIndex;
 
@@ -40,7 +40,7 @@ Widget gameStartCountDown(context, snapshot, controller) {
           ),
         );
       } else {
-        return answerScreen(context, snapshot, controller);
+        return answerScreen(context, snapshot);
       }
     },
   );

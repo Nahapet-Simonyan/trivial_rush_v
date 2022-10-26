@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/quiz_page_controller.dart';
+import '../../providers/quiz_color_controller.dart';
 
 ButtonStyle answerButtonStyle(context, snapshot, index, qIndex) {
   return TextButton.styleFrom(
@@ -17,7 +17,7 @@ ButtonStyle answerButtonStyle(context, snapshot, index, qIndex) {
     ['correct_answer'] ==
         true
         ? Provider
-        .of<QuizPageController>(
+        .of<QuizColorController>(
         context,
         listen: true)
         .color
