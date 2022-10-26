@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:trivial_rush/constants/colors_list/colors_list.dart';
 import 'package:trivial_rush/screens/home_page/home_page_screen.dart';
-import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
 import 'package:trivial_rush/screens/play_game/widgets/app_bar/quiz_app_bar_circular_tween.dart';
 
 Widget quizAppBar(context, snapshot, index) {
@@ -24,7 +22,6 @@ Widget quizAppBar(context, snapshot, index) {
                         builder: (context) => const HomePage(),
                       ),
                       (route) => false);
-                  Provider.of<CountdownController>(context).defaultIndex();
                 },
                 icon: const Icon(
                   Icons.chevron_left_outlined,

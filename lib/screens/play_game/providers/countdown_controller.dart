@@ -16,9 +16,4 @@ class CountdownController with ChangeNotifier {
     autoplay = newBool;
     notifyListeners();
   }
-  void defaultIndex() {
-    currentIndex = 0;
-    autoplay = true;
-    notifyListeners();
-  }
 }
