@@ -1,99 +1,47 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
+import 'answer_screen.dart';
+import '../widgets/count_down_items/countdown_items.dart';
 
-import '../../on_board_page/provider/page_view_controller.dart';
+Widget gameStartCountDown(context, snapshot, controller) {
+  int totalPages = CountDownItems.loadCountDownItem().length;
+  int currentIndex = Provider.of<CountdownController>(context, listen: true).currentIndex;
 
-Widget countdownScreen(context) {
-  PageController controller =
-      Provider.of<PageControllerProvider>(context, listen: true).page;
-  return PageView(
-    controller: controller,
-    physics: const NeverScrollableScrollPhysics(),
-    children: [
-      Container(
-        width: MediaQuery.of(context).size.width,
+  return CarouselSlider.builder(
+    itemCount: totalPages,
+    options: CarouselOptions(
+        scrollPhysics: const NeverScrollableScrollPhysics(),
+        pauseAutoPlayInFiniteScroll: false,
+        pauseAutoPlayOnManualNavigate: false,
+        pauseAutoPlayOnTouch: false,
         height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
+        autoPlay: Provider.of<CountdownController>(context).autoplay,
+        autoPlayInterval: const Duration(seconds: 1),
+        autoPlayAnimationDuration: const Duration(microseconds: 100),
+        reverse: false,
+        viewportFraction: 1,
+        onPageChanged: (index, reason) {
+          Provider.of<CountdownController>(context, listen: false).changeIndex(index);
+          if (index == CountDownItems.loadCountDownItem().length - 1) {
+            Provider.of<CountdownController>(context, listen: false).stopPlay();
+          }
+        }),
+    itemBuilder: (BuildContext context, int index, realIndex) {
+      CountDownItem countDownPages = CountDownItems.loadCountDownItem()[index];
+      if(currentIndex != CountDownItems.loadCountDownItem().length - 1) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: countDownPages.color,
+          child: Center(
+            child: countDownPages.text,
           ),
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color.fromRGBO(255, 102, 0, 1),
-        child: const Text(
-          'Get Ready',
-          style: TextStyle(
-            color: Colors.white,
-            decoration: TextDecoration.none,
-            fontSize: 48,
-            fontFamily: 'AmericanTypeWriter',
-          ),
-        ),
-      ),
-    ],
+        );
+      } else {
+        return answerScreen(context, snapshot, controller);
+      }
+    },
   );
 }

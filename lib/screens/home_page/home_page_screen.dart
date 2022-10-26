@@ -4,7 +4,7 @@ import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
 import 'package:trivial_rush/screens/purchases/purchases_screen.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_dropdown.dart';
 
-import '../play_game/quiz_screen.dart';
+import '../play_game/play_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

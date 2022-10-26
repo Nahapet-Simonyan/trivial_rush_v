@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/core/models/quiz_model/quiz.dart';
-import 'package:trivial_rush/screens/play_game/screens/play_screen.dart';
+import 'package:trivial_rush/screens/play_game/screens/countdown_screen.dart';
 import '../../core/trivial_rush_client.dart';
 
 class QuizScreen extends StatelessWidget {
