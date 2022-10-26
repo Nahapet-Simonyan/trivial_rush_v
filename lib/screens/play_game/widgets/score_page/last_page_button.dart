@@ -19,12 +19,14 @@ Widget lastPageGoToHomePageButton(context) {
           MaterialPageRoute(
             builder: (context) => const HomePage(),
           ),
-              (route) => false);
+          (route) => false);
     },
     child: const Text(
       'GO TO HOMEPAGE',
       style: TextStyle(
         fontSize: 20,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
         color: Colors.black,
       ),
     ),

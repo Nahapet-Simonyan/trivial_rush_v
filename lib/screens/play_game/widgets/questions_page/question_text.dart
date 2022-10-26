@@ -9,6 +9,7 @@ Widget questionText(snapshot, index) {
           '${snapshot.data?[index].question_text}',
           style: const TextStyle(
             fontSize: 18,
+            fontFamily: 'Roboto',
             color: Color.fromRGBO(74, 74, 74, 1),
           ),
         ),

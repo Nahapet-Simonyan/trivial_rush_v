@@ -7,7 +7,8 @@ import '../widgets/count_down_items/countdown_items.dart';
 
 Widget gameStartCountDown(context, snapshot) {
   int totalPages = CountDownItems.loadCountDownItem().length;
-  int currentIndex = Provider.of<CountdownController>(context, listen: true).currentIndex;
+  int currentIndex =
+      Provider.of<CountdownController>(context, listen: true).currentIndex;
 
   return CarouselSlider.builder(
     itemCount: totalPages,
@@ -23,14 +24,15 @@ Widget gameStartCountDown(context, snapshot) {
         reverse: false,
         viewportFraction: 1,
         onPageChanged: (index, reason) {
-          Provider.of<CountdownController>(context, listen: false).changeIndex(index);
+          Provider.of<CountdownController>(context, listen: false)
+              .changeIndex(index);
           if (index == CountDownItems.loadCountDownItem().length - 1) {
             Provider.of<CountdownController>(context, listen: false).stopPlay();
           }
         }),
     itemBuilder: (BuildContext context, int index, realIndex) {
       CountDownItem countDownPages = CountDownItems.loadCountDownItem()[index];
-      if(currentIndex != CountDownItems.loadCountDownItem().length - 1) {
+      if (currentIndex != CountDownItems.loadCountDownItem().length - 1) {
         return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -40,6 +42,7 @@ Widget gameStartCountDown(context, snapshot) {
           ),
         );
       } else {
+        Provider.of<CountdownController>(context, listen: false).defaultIndex();
         return answerScreen(context, snapshot);
       }
     },

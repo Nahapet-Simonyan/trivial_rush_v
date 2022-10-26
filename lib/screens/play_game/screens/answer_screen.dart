@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/play_game/widgets/score_page/last_page_button.dart';
 import 'package:trivial_rush/screens/play_game/widgets/questions_page/question_text.dart';
-import '../providers/countdown_controller.dart';
 import '../providers/quiz_color_controller.dart';
 import '../widgets/app_bar/quiz_app_bar.dart';
 import '../widgets/questions_page/answer_button_style.dart';
 import '../widgets/score_page/last_page_score.dart';
 
 Widget answerScreen(context, snapshot) {
-  Provider.of<CountdownController>(context, listen: false).changeIndex(0);
-  Provider.of<CountdownController>(context, listen: false).changeAutoPlay(true);
-
   PageController quizPageController = PageController(initialPage: 0);
 
   int scoreT = 0;
+
   return PageView.builder(
     controller: quizPageController,
     reverse: false,
@@ -62,6 +59,8 @@ Widget answerScreen(context, snapshot) {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w400,
                           color: snapshot.data?[index].answers?[qIndex]
                                       ['correct_answer'] ==
                                   true

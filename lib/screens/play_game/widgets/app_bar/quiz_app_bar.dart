@@ -26,6 +26,7 @@ Widget quizAppBar(quizPageController, context, snapshot, index) {
                 icon: const Icon(
                   Icons.chevron_left_outlined,
                   size: 30,
+                  color: Colors.white,
                 ),
                 alignment: Alignment.centerLeft,
               ),
