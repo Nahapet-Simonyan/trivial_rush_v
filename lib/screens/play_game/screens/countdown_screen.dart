@@ -43,6 +43,7 @@ Widget gameStartCountDown(context, snapshot) {
         );
       } else {
         Provider.of<CountdownController>(context, listen: false).defaultIndex();
+
         return answerScreen(context, snapshot);
       }
     },
