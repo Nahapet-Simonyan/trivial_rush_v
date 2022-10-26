@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/login_page/widgets/form.dart';
 import 'package:trivial_rush/widgets/general_button.dart';
-import '../on_board_page/on_board_screen.dart';
+import '../on_boarding/on_board_screen.dart';
 import 'provider/login_page_provider.dart';
 
 class LoginPage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/on_board_page/builders/on_board_item_builder.dart';
+import 'package:trivial_rush/screens/on_boarding/builders/on_board_item_builder.dart';
 
 class OnBoardingPageItem {
   final Widget title;

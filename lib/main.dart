@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/login_page/provider/login_page_provider.dart';
 import 'package:trivial_rush/screens/login_page/login_page_screen.dart';
-import 'package:trivial_rush/screens/on_board_page/provider/page_view_controller.dart';
+import 'package:trivial_rush/screens/on_boarding/provider/page_view_controller.dart';
 import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
 import 'package:trivial_rush/screens/play_game/providers/quiz_page_controller.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:trivial_rush/screens/on_board_page/models/on_boarding_item_model.dart';
-import 'package:trivial_rush/screens/on_board_page/provider/page_view_controller.dart';
+import 'package:trivial_rush/screens/on_boarding/models/on_boarding_item_model.dart';
+import 'package:trivial_rush/screens/on_boarding/provider/page_view_controller.dart';
 import 'package:trivial_rush/widgets/general_button.dart';
 import '../home_page/home_page_screen.dart';
 import 'builders/on_board_page_builder.dart';
