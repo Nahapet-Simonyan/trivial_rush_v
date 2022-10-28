@@ -42,7 +42,7 @@ Widget answerScreen(context, snapshot) {
                             left: 46,
                             right: 46),
                         child: snapshot.data![index].question_image_url != null ? Image
-                            .network('${snapshot.data![index].question_image_url}') : SizedBox(),
+                            .network('${snapshot.data![index].question_image_url}') : const SizedBox(),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
