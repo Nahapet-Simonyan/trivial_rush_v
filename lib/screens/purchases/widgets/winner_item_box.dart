@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/models/purchases_model/purchases.dart';
+import '../../../core/models/purchases_model/purchases.dart';
 
 Widget winnerBox(
     {required BuildContext context,

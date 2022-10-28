@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
 import 'answer_screen.dart';
-import '../widgets/count_down_items/countdown_items.dart';
+import '../models/countdown_items.dart';
 
 Widget gameStartCountDown(context, snapshot) {
   int totalPages = CountDownItems.loadCountDownItem().length;

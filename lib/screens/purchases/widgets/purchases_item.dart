@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/purchases/widgets/purchases_container.dart';
-import 'package:trivial_rush/screens/purchases/widgets/purchases_item_widgets/players_item_box.dart';
-import 'package:trivial_rush/screens/purchases/widgets/purchases_item_widgets/winner_item_box.dart';
+import 'package:trivial_rush/screens/purchases/widgets/players_item_box.dart';
+import 'package:trivial_rush/screens/purchases/widgets/winner_item_box.dart';
 
 
 Widget purchasesItem(context, snapshot, colorList, index, item) {
