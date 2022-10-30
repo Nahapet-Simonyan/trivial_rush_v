@@ -23,7 +23,6 @@ class QuizScreen extends StatelessWidget {
                 color: Colors.white,
 
                 // Start Game
-
                 child: gameStartCountDown(context, snapshot),
               );
             } else if (snapshot.hasError) {

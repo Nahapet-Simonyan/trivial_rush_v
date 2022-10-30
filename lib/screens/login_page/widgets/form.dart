@@ -28,21 +28,24 @@ Widget loginPageForm(BuildContext context, bool isChecked) {
 
         // Remember Password CheckBox
         SizedBox(
-          child: CheckboxListTile(
-              title: const Text(
-                "Remember Password",
-                style: TextStyle(
-                  fontFamily: 'Sans Serif',
-                  fontSize: 12,
+          child: Consumer(
+            builder: (BuildContext context, value, Widget? child) {
+            return CheckboxListTile(
+                title: const Text(
+                  "Remember Password",
+                  style: TextStyle(
+                    fontFamily: 'Sans Serif',
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-              controlAffinity:
-              ListTileControlAffinity.leading,
-              activeColor: const Color.fromRGBO(204, 0, 1, 1),
-              value: isChecked,
-              onChanged: (value) => context
-                  .read<LoginPageCheckBoxProvider>()
-                  .changeCheck()),
+                controlAffinity:
+                ListTileControlAffinity.leading,
+                activeColor: const Color.fromRGBO(204, 0, 1, 1),
+                value: isChecked,
+                onChanged: (value) => context
+                    .read<LoginPageCheckBoxProvider>()
+                    .changeCheck());
+            },),
         ),
       ],
     ),

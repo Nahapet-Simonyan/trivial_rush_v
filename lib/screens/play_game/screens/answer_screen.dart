@@ -99,6 +99,9 @@ Widget answerScreen(context, snapshot) {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 50,
+                      ),
                     ],
                   ),
                 ),
@@ -121,7 +124,9 @@ Widget answerScreen(context, snapshot) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              // Score
               lastPageScore(scoreT),
+              // Go To HomePage Button
               lastPageGoToHomePageButton(context),
             ],
           ),

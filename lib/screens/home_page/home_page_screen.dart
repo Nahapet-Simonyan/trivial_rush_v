@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_items.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
@@ -44,10 +46,12 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
 // Main Side
 
 // 1-st Row
-
               Flexible(
                 flex: 2,
                 child: Row(

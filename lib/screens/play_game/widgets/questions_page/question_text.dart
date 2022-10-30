@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget questionText(snapshot, index) {
   return Padding(
-    padding: const EdgeInsets.only(top: 70.0, left: 40, right: 40),
+    padding: const EdgeInsets.only(top: 20.0, left: 40, right: 40),
     child: SizedBox(
       child: Center(
         child: Text(
