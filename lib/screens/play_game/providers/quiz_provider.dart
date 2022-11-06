@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../constants/colors_list/colors_list.dart';
 
 class QuizProvider with ChangeNotifier {

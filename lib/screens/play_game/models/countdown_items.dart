@@ -1,8 +1,5 @@
 import 'dart:core';
-
 import 'package:flutter/material.dart';
-import 'package:trivial_rush/screens/play_game/screens/answer_screen.dart';
-
 import '../../../core/models/quiz_model/quiz.dart';
 
 class CountDownItem {
