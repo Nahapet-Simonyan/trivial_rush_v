@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/login_page/provider/login_page_provider.dart';
 import 'package:trivial_rush/screens/login_page/login_page_screen.dart';
 import 'package:trivial_rush/screens/on_boarding/provider/page_view_controller.dart';
-import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
-import 'package:trivial_rush/screens/play_game/providers/quiz_color_controller.dart';
+import 'package:trivial_rush/screens/play_game/providers/countdown_provider.dart';
+import 'package:trivial_rush/screens/play_game/providers/quiz_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
           create: (_) => PageControllerProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => QuizColorController(),
+          create: (_) => QuizProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => CountdownController(),
+          create: (_) => CountdownProvider(),
         ),
       ],
       child: MaterialApp(

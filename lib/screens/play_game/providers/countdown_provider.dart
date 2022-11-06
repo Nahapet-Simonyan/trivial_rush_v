@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CountdownController with ChangeNotifier {
+class CountdownProvider with ChangeNotifier {
   bool autoplay = true;
   int currentIndex = 0;
 

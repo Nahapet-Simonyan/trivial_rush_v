@@ -1,14 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trivial_rush/screens/play_game/providers/countdown_controller.dart';
+import 'package:trivial_rush/screens/play_game/providers/countdown_provider.dart';
+import '../../../core/models/quiz_model/quiz.dart';
 import 'answer_screen.dart';
 import '../models/countdown_items.dart';
 
-Widget gameStartCountDown(context, snapshot) {
-  int totalPages = CountDownItems.loadCountDownItem().length;
+Widget gameStartCountDown(
+    {required BuildContext context,
+    required AsyncSnapshot<List<Quiz>> snapshot}) {
+  //
+  int totalPages = CountDownItems(context, snapshot).loadCountDownItem().length;
   int currentIndex =
-      Provider.of<CountdownController>(context, listen: true).currentIndex;
+      Provider.of<CountdownProvider>(context, listen: true).currentIndex;
 
   return CarouselSlider.builder(
     itemCount: totalPages,
@@ -18,21 +22,21 @@ Widget gameStartCountDown(context, snapshot) {
         pauseAutoPlayOnManualNavigate: false,
         pauseAutoPlayOnTouch: false,
         height: MediaQuery.of(context).size.height,
-        autoPlay: Provider.of<CountdownController>(context).autoplay,
+        autoPlay: Provider.of<CountdownProvider>(context).autoplay,
         autoPlayInterval: const Duration(seconds: 1),
         autoPlayAnimationDuration: const Duration(microseconds: 100),
         reverse: false,
         viewportFraction: 1,
         onPageChanged: (index, reason) {
-          Provider.of<CountdownController>(context, listen: false)
+          Provider.of<CountdownProvider>(context, listen: false)
               .changeIndex(index);
-          if (index == CountDownItems.loadCountDownItem().length - 1) {
-            Provider.of<CountdownController>(context, listen: false).stopPlay();
+          if (index == CountDownItems(context, snapshot).loadCountDownItem().length - 1) {
+            Provider.of<CountdownProvider>(context, listen: false).stopPlay();
           }
         }),
     itemBuilder: (BuildContext context, int index, realIndex) {
-      CountDownItem countDownPages = CountDownItems.loadCountDownItem()[index];
-      if (currentIndex != CountDownItems.loadCountDownItem().length - 1) {
+      CountDownItem countDownPages = CountDownItems(context, snapshot).loadCountDownItem()[index];
+      if (currentIndex != CountDownItems(context, snapshot).loadCountDownItem().length - 1) {
         return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -42,9 +46,9 @@ Widget gameStartCountDown(context, snapshot) {
           ),
         );
       } else {
-        Provider.of<CountdownController>(context, listen: false).defaultIndex();
+        Provider.of<CountdownProvider>(context, listen: false).defaultIndex();
 
-        return answerScreen(context, snapshot);
+        return answerScreen(context: context, snapshot: snapshot);
       }
     },
   );

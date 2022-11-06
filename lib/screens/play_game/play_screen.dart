@@ -22,8 +22,8 @@ class QuizScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 color: Colors.white,
 
-                // Start Game
-                child: gameStartCountDown(context, snapshot),
+                /// Start Game
+                child: gameStartCountDown(context: context, snapshot: snapshot),
               );
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');

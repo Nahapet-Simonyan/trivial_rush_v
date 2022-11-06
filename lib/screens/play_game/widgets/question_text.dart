@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/quiz_color_controller.dart';
+import '../providers/quiz_provider.dart';
 
-ButtonStyle answerButtonStyle(context, snapshot, index, qIndex) {
+Widget questionText(snapshot, index) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 20.0, left: 40, right: 40),
+    child: SizedBox(
+      child: Center(
+        child: Text(
+          '${snapshot.data?[index].question_text}',
+          style: const TextStyle(
+            fontSize: 18,
+            fontFamily: 'Roboto',
+            color: Color.fromRGBO(74, 74, 74, 1),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+ButtonStyle answerButtonStyle(context, data, index, qIndex) {
   return TextButton.styleFrom(
     minimumSize: const Size(320, 47),
     primary:
-    snapshot.data?[index]
+    data[index]
         .answers?[qIndex]
     ['correct_answer'] ==
         false ? Colors.red : Colors.yellow,
     backgroundColor:
-    snapshot.data?[index]
+    data[index]
         .answers?[qIndex]
     ['correct_answer'] ==
         true
         ? Provider
-        .of<QuizColorController>(
+        .of<QuizProvider>(
         context,
         listen: true)
         .color

@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trivial_rush/screens/play_game/widgets/score_page/last_page_button.dart';
-import 'package:trivial_rush/screens/play_game/widgets/questions_page/question_text.dart';
+import 'package:trivial_rush/screens/play_game/builders/answer_list_builder.dart';
+import 'package:trivial_rush/screens/play_game/widgets/question_text.dart';
+import '../../../core/models/quiz_model/quiz.dart';
 import '../models/only_one_pointer_recognizer.dart';
-import '../providers/quiz_color_controller.dart';
-import '../widgets/app_bar/quiz_app_bar.dart';
-import '../widgets/questions_page/answer_button_style.dart';
-import '../widgets/score_page/last_page_score.dart';
+import '../providers/quiz_provider.dart';
+import '../widgets/quiz_app_bar.dart';
+import '../widgets/last_page_score.dart';
 
-Widget answerScreen(context, snapshot) {
+Widget answerScreen(
+    {required BuildContext context,
+    required AsyncSnapshot<List<Quiz>> snapshot}) {
   PageController quizPageController = PageController(initialPage: 0);
 
-  int scoreT = 0;
+  var data = snapshot.data;
 
   return PageView.builder(
     controller: quizPageController,
     reverse: false,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (BuildContext context, int index) {
-      context.read<QuizColorController>().defaultColor();
+      var provider = context.read<QuizProvider>();
+
+      /// When restart the game, all colors changes to default colors
+      provider.defaultColor();
 
       if (index < snapshot.data!.length) {
         return SizedBox(
@@ -27,76 +32,38 @@ Widget answerScreen(context, snapshot) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // AppBar
+              /// AppBar
               quizAppBar(quizPageController, context, snapshot, index),
-              // QuizBar
+
+              /// Quiz
               SizedBox(
-                height: MediaQuery.of(context).size.height - 137 ,
+                height: MediaQuery.of(context).size.height - 137,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      /// Question
                       questionText(snapshot, index),
+
+                      /// Image
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 16.0,
-                            left: 46,
-                            right: 46),
-                        child: snapshot.data![index].question_image_url != null ? Image
-                            .network('${snapshot.data![index].question_image_url}') : const SizedBox(),
+                            top: 16.0, left: 46, right: 46),
+                        child: data![index].question_image_url != null
+                            ? Image.network('${data[index].question_image_url}')
+                            : const SizedBox(),
                       ),
+
+                      /// Answers
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: OnlyOnePointerRecognizerWidget(
-                          child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: snapshot.data?[index].answers?.length,
-                            itemBuilder: (BuildContext context, int qIndex) {
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 16.0,
-                                  left: 46,
-                                  right: 46,
-                                ),
-                                child: TextButton(
-                                  style:
-                                  answerButtonStyle(context, snapshot, index, qIndex),
-                                  onPressed: () {
-                                    if (snapshot.data?[index].answers?[qIndex]
-                                    ['correct_answer'] ==
-                                        true) {
-                                      context.read<QuizColorController>().changeColor(
-                                          index);
-                                      scoreT += 10;
-                                    } else {
-                                      context.read<QuizColorController>().falseAnswer();
-                                    }
-                                    quizPageController.nextPage(
-                                        duration: const Duration(milliseconds: 500),
-                                        curve: Curves.linear);
-                                  },
-                                  child: Text(
-                                    '${snapshot.data?[index]
-                                        .answers?[qIndex]['answer_text']}',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w400,
-                                      color: snapshot.data?[index].answers?[qIndex]
-                                      ['correct_answer'] ==
-                                          true
-                                          ? Provider
-                                          .of<QuizColorController>(context,
-                                          listen: true)
-                                          .textColor
-                                          : const Color.fromRGBO(74, 74, 74, 1),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          /// Widget list builder
+                          child: answersListBuilder(
+                              data: data,
+                              index: index,
+                              snapshot: snapshot,
+                              provider: provider,
+                              quizPageController: quizPageController),
                         ),
                       ),
                       const SizedBox(
@@ -110,24 +77,19 @@ Widget answerScreen(context, snapshot) {
           ),
         );
       } else {
-        // Last/Score Page
+        /// Last/Score Page
         return Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           color: const Color.fromRGBO(0, 153, 0, 1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // Score
-              lastPageScore(scoreT),
-              // Go To HomePage Button
-              lastPageGoToHomePageButton(context),
+              /// Score
+              lastPageScore(provider: provider),
+
+              /// Go To HomePage Button
+              lastPageGoToHomePageButton(context: context),
             ],
           ),
         );

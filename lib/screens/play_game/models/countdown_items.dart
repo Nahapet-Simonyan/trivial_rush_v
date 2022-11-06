@@ -1,15 +1,27 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
+import 'package:trivial_rush/screens/play_game/screens/answer_screen.dart';
+
+import '../../../core/models/quiz_model/quiz.dart';
 
 class CountDownItem {
   final Widget text;
   final Color color;
 
-  CountDownItem({required this.text, required this.color});
+  CountDownItem(
+      {required this.text,
+      required this.color,});
 }
 
 class CountDownItems {
-  static List<CountDownItem> loadCountDownItem() {
-    var items = <CountDownItem>[
+  final BuildContext context;
+  final AsyncSnapshot<List<Quiz>> snapshot;
+
+  CountDownItems(this.context, this.snapshot);
+
+  List loadCountDownItem() {
+    var items = [
       CountDownItem(
         text: const Text(
           '5',
