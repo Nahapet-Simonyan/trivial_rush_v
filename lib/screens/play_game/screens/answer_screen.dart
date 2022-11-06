@@ -6,7 +6,7 @@ import '../../../core/models/quiz_model/quiz.dart';
 import '../models/only_one_pointer_recognizer.dart';
 import '../providers/quiz_provider.dart';
 import '../widgets/quiz_app_bar.dart';
-import '../widgets/last_page_score.dart';
+import '../widgets/score_page.dart';
 
 Widget answerScreen(
     {required BuildContext context,
@@ -86,10 +86,10 @@ Widget answerScreen(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               /// Score
-              lastPageScore(provider: provider),
+              score(provider: provider),
 
               /// Go To HomePage Button
-              lastPageGoToHomePageButton(context: context),
+              scorePageGoToHomePageButton(context: context, provider: provider),
             ],
           ),
         );

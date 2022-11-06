@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivial_rush/screens/play_game/providers/countdown_provider.dart';
+import 'package:trivial_rush/screens/play_game/providers/quiz_provider.dart';
 import '../../../core/models/quiz_model/quiz.dart';
 import 'answer_screen.dart';
 import '../models/countdown_items.dart';
@@ -10,12 +11,14 @@ Widget gameStartCountDown(
     {required BuildContext context,
     required AsyncSnapshot<List<Quiz>> snapshot}) {
   //
-  int totalPages = CountDownItems(context, snapshot).loadCountDownItem().length;
-  int currentIndex =
-      Provider.of<CountdownProvider>(context, listen: true).currentIndex;
+  var countdownItems = CountDownItems(context, snapshot);
+  var provider = context.read<CountdownProvider>();
+  var loadCountDownItem = countdownItems.loadCountDownItem();
+  int currentIndex = context.watch<CountdownProvider>().currentIndex;
+  context.read<QuizProvider>().score = 0;
 
   return CarouselSlider.builder(
-    itemCount: totalPages,
+    itemCount: loadCountDownItem.length,
     options: CarouselOptions(
         scrollPhysics: const NeverScrollableScrollPhysics(),
         pauseAutoPlayInFiniteScroll: false,
@@ -28,15 +31,19 @@ Widget gameStartCountDown(
         reverse: false,
         viewportFraction: 1,
         onPageChanged: (index, reason) {
-          Provider.of<CountdownProvider>(context, listen: false)
-              .changeIndex(index);
-          if (index == CountDownItems(context, snapshot).loadCountDownItem().length - 1) {
-            Provider.of<CountdownProvider>(context, listen: false).stopPlay();
+          ///
+          provider.changeIndex(index);
+          if (index == loadCountDownItem.length - 1) {
+            ///
+            provider.stopPlay();
           }
         }),
     itemBuilder: (BuildContext context, int index, realIndex) {
-      CountDownItem countDownPages = CountDownItems(context, snapshot).loadCountDownItem()[index];
-      if (currentIndex != CountDownItems(context, snapshot).loadCountDownItem().length - 1) {
+      ///
+      CountDownItem countDownPages = loadCountDownItem[index];
+
+      ///
+      if (currentIndex != loadCountDownItem.length - 1) {
         return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -46,7 +53,7 @@ Widget gameStartCountDown(
           ),
         );
       } else {
-        Provider.of<CountdownProvider>(context, listen: false).defaultIndex();
+        provider.defaultIndex();
 
         return answerScreen(context: context, snapshot: snapshot);
       }

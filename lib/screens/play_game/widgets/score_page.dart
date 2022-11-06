@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../home_page/home_page_screen.dart';
 import '../providers/quiz_provider.dart';
 
-Widget lastPageScore({required QuizProvider provider}) {
+Widget score({required QuizProvider provider}) {
   return SizedBox(
     height: 130,
     child: Column(
@@ -28,7 +28,7 @@ Widget lastPageScore({required QuizProvider provider}) {
   );
 }
 
-Widget lastPageGoToHomePageButton({required BuildContext context}) {
+Widget scorePageGoToHomePageButton({required BuildContext context, required QuizProvider provider}) {
   return TextButton(
     style: TextButton.styleFrom(
       backgroundColor: Colors.white,
