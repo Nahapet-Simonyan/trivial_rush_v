@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trivial_rush/screens/login_page/widgets/form.dart';
+import 'package:trivial_rush/screens/login_page/widgets/fields_form.dart';
 import 'package:trivial_rush/widgets/general_button.dart';
 import '../on_boarding/on_board_screen.dart';
 import 'provider/login_page_provider.dart';
@@ -25,17 +25,20 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Logo Image
+                    ///
+                    /// Logo Image
                     Image.asset(
                       'assets/images/main_logo.png',
                       width: 213,
                       height: 157,
                     ),
 
-                    // Input Form
+                    ///
+                    /// Input Form
                     loginPageForm(context, isChecked),
 
-                    // Login Button
+                    ///
+                    /// Login Button
                     GestureDetector(
                       onTap: () {
                         Navigator.pushAndRemoveUntil(
@@ -53,7 +56,8 @@ class LoginPage extends StatelessWidget {
                           fontSize: 20.0),
                     ),
 
-                    // Forgot Password Button
+                    ///
+                    /// Forgot Password Button
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
@@ -64,7 +68,8 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
 
-                    // Sign Up Button
+                    ///
+                    /// Sign Up Button
                     GestureDetector(
                       onTap: () {},
                       child: const Text(

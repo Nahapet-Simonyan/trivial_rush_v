@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// Create Container widget for `Purchases` list items
+
 Widget purchasesContainer(Widget containerChild) {
   return Container(
     height: 97,

@@ -1,12 +1,15 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_items.dart';
 import 'package:trivial_rush/screens/leaderboard/leaderboard_screen.dart';
 import 'package:trivial_rush/screens/purchases/purchases_screen.dart';
 import 'package:trivial_rush/screens/home_page/widgets/home_page_dropdown.dart';
-
 import '../play_game/play_screen.dart';
+
+/// created by Nahapet
+/// Date: 14.10.22
+
+/// [homePageItems] Widget for Home Page main items boxes, with styles
+/// [dropdownListView] Widget for Home Page main items boxes, with styles
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,6 +32,8 @@ class HomePage extends StatelessWidget {
         ),
         toolbarHeight: 100,
       ),
+
+      /// DropDown Menu
       endDrawer: SafeArea(
         child: Drawer(
           width: 274,
@@ -37,6 +42,8 @@ class HomePage extends StatelessWidget {
               topLeft: Radius.circular(50),
             ),
           ),
+
+          ///
           child: dropdownListView(context),
         ),
       ),
@@ -46,18 +53,18 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              /// <<Padding>> between AppBar And body
               const SizedBox(
                 height: 20,
               ),
-// Main Side
 
-// 1-st Row
+              /// First Row items: `Play Now` and `Purchases`
               Flexible(
                 flex: 2,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // Play now
+                    /// Play now
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -77,7 +84,7 @@ class HomePage extends StatelessWidget {
                           text: 'Play Now'),
                     ),
 
-                    //Purchases
+                    /// Purchases
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -99,17 +106,19 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
+
+              /// <<Padding>> between 1-st Row and 2-nd Row
               const SizedBox(
                 height: 20,
               ),
-              // 2-nd Row
+
+              /// Second Row items: `Leaderboard` and `Profile`
               Flexible(
                 flex: 2,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //Leaderboard
-
+                    /// Leaderboard
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -129,7 +138,7 @@ class HomePage extends StatelessWidget {
                           text: 'Leaderboard'),
                     ),
 
-                    //Profile
+                    ///Profile
                     GestureDetector(
                       onTap: () {},
                       child: homePageItems(
@@ -144,10 +153,13 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
+
+              /// <<Padding>> between 2-nd row and `bottom image`
               const SizedBox(
                 height: 5,
               ),
-              // Bottom Image
+
+              /// Bottom Image
               Image.asset('assets/images/home_page.png'),
             ],
           ),

@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../core/models/leaderboard_model/leaderboard.dart';
 
-Widget leaderboardItem(context, snapshot, colorList, index, item) {
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// [colorList] leaderboardColorList from global constants -> colors_list
+/// [index] index of current member
+/// [item] current member
+
+Widget leaderboardItem(
+    {required BuildContext context,
+    required AsyncSnapshot<List<Leaderboard>> snapshot,
+    required List<Color> colorList,
+    required int index,
+    Leaderboard? item}) {
+  //
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
     child: Container(
@@ -18,6 +32,7 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
       ),
       child: Row(
         children: [
+          /// Number of `index`
           Text(
             '${index + 1}.',
             style: const TextStyle(
@@ -25,12 +40,13 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
               fontSize: 24,
             ),
           ),
+
+          /// <<Padding>> between (Number of `index`) and `avatar`
           const SizedBox(
             width: 10.0,
           ),
 
-          // Circle Avatar
-
+          /// `avatar`: Circle Avatar
           Container(
             height: 64,
             width: 64,
@@ -38,13 +54,14 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
               borderRadius: const BorderRadius.all(
                 Radius.circular(64),
               ),
+
+              /// -- dynamic background color
               color: colorList[index % colorList.length],
-              // -- dynamic background color
             ),
+
+            /// if has image => show image
+            /// if not has image => show first letter of name
             child: item?.user_image_url == null
-
-                // if has image => show image
-
                 ? Center(
                     child: Text(
                       '${item?.first_name?[0].toUpperCase()}',
@@ -55,9 +72,6 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
                       ),
                     ),
                   )
-
-                // if not has image => show first letter of name
-
                 : Center(
                     child: CircleAvatar(
                       radius: 64,
@@ -65,9 +79,13 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
                     ),
                   ),
           ),
+
+          /// <<Padding>> between `avatar` and `name`
           const SizedBox(
             width: 30.0,
           ),
+
+          /// Name text
           Text(
             '${item?.first_name}',
             style: const TextStyle(
@@ -76,7 +94,11 @@ Widget leaderboardItem(context, snapshot, colorList, index, item) {
               fontSize: 18,
             ),
           ),
+
+          /// Expanded <<Padding>> between `name` and `score`
           const Expanded(child: SizedBox()),
+
+          /// Score text
           Text(
             '${item?.score}',
             style: const TextStyle(

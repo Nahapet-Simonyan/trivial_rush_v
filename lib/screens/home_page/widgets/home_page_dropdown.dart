@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../login_page/login_page_screen.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// Create a ListView widget for Home page: Dropdown menu
+
 Widget dropdownListView(context) {
   return ListView(
     children: [
+      /// Scores
       Padding(
         padding: const EdgeInsets.only(left: 220),
         child: ListTile(
@@ -21,6 +27,8 @@ Widget dropdownListView(context) {
         title: Image.asset('assets/images/hp_scores.png'),
         onTap: () {},
       ),
+
+      /// Prize Payout
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(
@@ -28,6 +36,8 @@ Widget dropdownListView(context) {
           onTap: () {},
         ),
       ),
+
+      /// Rules
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(
@@ -35,6 +45,8 @@ Widget dropdownListView(context) {
           onTap: () {},
         ),
       ),
+
+      /// Support
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(
@@ -42,6 +54,8 @@ Widget dropdownListView(context) {
           onTap: () {},
         ),
       ),
+
+      ///About
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(
@@ -49,6 +63,8 @@ Widget dropdownListView(context) {
           onTap: () {},
         ),
       ),
+
+      /// Buy our book
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(
@@ -67,6 +83,8 @@ Widget dropdownListView(context) {
           onTap: () {},
         ),
       ),
+
+      /// Sign out
       Padding(
         padding: const EdgeInsets.only(left: 20),
         child: ListTile(

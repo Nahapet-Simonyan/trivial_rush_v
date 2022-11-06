@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// Create a TextButton widget
+
 Widget generalButton(
     {required double width,
     required double height,
@@ -7,6 +12,7 @@ Widget generalButton(
     required String text,
     required double fontSize,
     String? fontFamily}) {
+  //
   return Container(
     width: width,
     height: height,
@@ -29,4 +35,3 @@ Widget generalButton(
     ),
   );
 }
-
