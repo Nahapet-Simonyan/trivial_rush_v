@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:trivial_rush/screens/on_boarding/builders/on_board_item_builder.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// class [OnBoardingPageItem] model for `on boarding` pages
+/// class [OnBoardingPageItems] list for `on boarding` pages
+/// function [loadOnBoardItem] return's all items of  `OnBoardingPageItems` list
+/// [infoPageItem] builder `on boarding` page item
+
 class OnBoardingPageItem {
   final Widget title;
   final Widget mainText;

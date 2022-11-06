@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget onBoardingPage(onBoardPages, int index) {
+import '../models/on_boarding_item_model.dart';
+
+Widget onBoardingPage(
+    {required List<OnBoardingPageItem> onBoardPages, required int index}) {
   return SingleChildScrollView(
     child: Column(
       children: [

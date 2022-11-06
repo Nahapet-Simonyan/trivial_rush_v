@@ -5,6 +5,13 @@ import 'package:trivial_rush/widgets/general_button.dart';
 import '../on_boarding/on_board_screen.dart';
 import 'provider/login_page_provider.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// [isChecked] is changes CheckBox state `true` -> `false`, `false` -> `true`
+/// [loginPageForm] Widget form for TextFields and CheckBox
+/// [generalButton] widget for colored and bordered buttons
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -25,7 +32,6 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ///
                     /// Logo Image
                     Image.asset(
                       'assets/images/main_logo.png',
@@ -33,11 +39,9 @@ class LoginPage extends StatelessWidget {
                       height: 157,
                     ),
 
-                    ///
                     /// Input Form
                     loginPageForm(context, isChecked),
 
-                    ///
                     /// Login Button
                     GestureDetector(
                       onTap: () {
@@ -56,7 +60,6 @@ class LoginPage extends StatelessWidget {
                           fontSize: 20.0),
                     ),
 
-                    ///
                     /// Forgot Password Button
                     GestureDetector(
                       onTap: () {},
@@ -68,7 +71,6 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
 
-                    ///
                     /// Sign Up Button
                     GestureDetector(
                       onTap: () {},

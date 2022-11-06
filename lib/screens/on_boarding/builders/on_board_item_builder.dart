@@ -8,6 +8,7 @@ OnBoardingPageItem infoPageItem(
     required String mainText,
     required Color color,
     required Image image}) {
+  //
   return OnBoardingPageItem(
     title: Text(
       titleText,

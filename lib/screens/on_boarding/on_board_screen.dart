@@ -7,6 +7,15 @@ import 'package:trivial_rush/widgets/general_button.dart';
 import '../home_page/home_page_screen.dart';
 import 'builders/on_board_page_builder.dart';
 
+/// Created by Nahapet
+/// Date: 14.10.22
+
+/// [onBoardPages] List of `on board` pages
+/// [pageIndex] get current page `index` from `PageControllerProvider`
+/// [pageController] get current `page` from `PageControllerProvider`
+/// [onBoardingPage] widget skeleton for each on boarding page
+/// [generalButton] colored TextButton widget
+
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
 
@@ -29,15 +38,19 @@ class OnBoardingScreen extends StatelessWidget {
               Provider.of<PageControllerProvider>(context, listen: false)
                   .changePage(index),
           children: [
-            onBoardingPage(onBoardPages, 0),
-            onBoardingPage(onBoardPages, 1),
-            onBoardingPage(onBoardPages, 2),
-            onBoardingPage(onBoardPages, 3),
+            onBoardingPage(onBoardPages: onBoardPages, index: 0),
+            onBoardingPage(onBoardPages: onBoardPages, index: 1),
+            onBoardingPage(onBoardPages: onBoardPages, index: 2),
+            onBoardingPage(onBoardPages: onBoardPages, index: 3),
           ],
         ),
       ),
-      bottomSheet: pageController.initialPage == 3
-          // Go To Home Page Button
+
+      /// in last on boarding page the indicator is changed to `generalButton`
+      /// for navigate to other page
+      bottomSheet: pageController.initialPage == onBoardPages.length - 1
+
+          /// Go To Home Page Button
           ? SizedBox(
               height: 50,
               child: Center(
@@ -65,7 +78,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             )
 
-          // Indicator
+          /// Bottom Indicator
           : SizedBox(
               height: 59,
               child: Center(

@@ -66,6 +66,7 @@ class PurchasesScreen extends StatelessWidget {
                             item: item!);
                       });
                 } else if (snapshot.hasError) {
+                  /// info about error
                   return Text('${snapshot.error}');
                 }
                 return const Center(child: CircularProgressIndicator());

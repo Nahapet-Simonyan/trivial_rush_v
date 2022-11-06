@@ -5,18 +5,15 @@ import '../provider/login_page_provider.dart';
 
 /// Created by Nahapet
 /// Date: 14.10.22
-///
+
 /// [checkProvider] get new state from LoginCheckBoxProvider
-///
 /// [loginPageTextFieldStyle] `type: UnderlineInputBorder` - style for Text Fields
-///
 
 Widget loginPageForm(BuildContext context, bool isChecked) {
   var checkProvider = context.read<LoginPageCheckBoxProvider>();
   return Form(
     child: Column(
       children: [
-        ///
         /// Email TextField
         TextField(
           decoration: InputDecoration(
@@ -25,7 +22,6 @@ Widget loginPageForm(BuildContext context, bool isChecked) {
           ),
         ),
 
-        ///
         /// Password TextField
         TextField(
           obscureText: true,
@@ -37,7 +33,6 @@ Widget loginPageForm(BuildContext context, bool isChecked) {
           ),
         ),
 
-        ///
         /// Remember Password CheckBox
         SizedBox(
           child: Consumer(
@@ -53,8 +48,7 @@ Widget loginPageForm(BuildContext context, bool isChecked) {
                   controlAffinity: ListTileControlAffinity.leading,
                   activeColor: const Color.fromRGBO(204, 0, 1, 1),
                   value: isChecked,
-                  onChanged: (value) =>
-                      checkProvider.changeCheck());
+                  onChanged: (value) => checkProvider.changeCheck());
             },
           ),
         ),
