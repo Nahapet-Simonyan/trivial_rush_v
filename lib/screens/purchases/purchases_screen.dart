@@ -9,11 +9,11 @@ import '../../core/trivial_rush_client.dart';
 /// Created by Nahapet
 /// Date: 14.10.22
 
-/// Create a Leaderboard page for Trivial Rush
+/// Create a Purchases page for Trivial Rush
 
 /// [futurePurchases] get List of `Purchases` items from Api
 /// [item] current member from `Purchases` list
-///
+
 class PurchasesScreen extends StatelessWidget {
   PurchasesScreen({Key? key}) : super(key: key);
 

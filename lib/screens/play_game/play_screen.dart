@@ -3,8 +3,8 @@ import 'package:trivial_rush/core/models/quiz_model/quiz.dart';
 import 'package:trivial_rush/screens/play_game/screens/countdown_screen.dart';
 import '../../core/trivial_rush_client.dart';
 
-class QuizScreen extends StatelessWidget {
-  QuizScreen({Key? key}) : super(key: key);
+class PlayScreen extends StatelessWidget {
+  PlayScreen({Key? key}) : super(key: key);
 
   late Future<List<Quiz>> futureQuiz;
 
